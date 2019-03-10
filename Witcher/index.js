@@ -159,8 +159,6 @@ function findArmor(money, highNum)
     let lPrice = 0;
     let cNum = 0;
     let cPrice = 0;
-    let extraValue = 0;
-    let extraPrice = 0;
 
     let total = 0;
 
@@ -197,8 +195,34 @@ function findArmor(money, highNum)
     }
     money = money - cPrice;
 
-    let lastType = finalArmor(money,helmets,helmet);
-    console.log(helmet,legging,chest);
+    let lastMaxValue = 0;
+
+    let lastHelmet = finalArmor(money,helmets,helmet);
+    let lastLeg = finalArmor(money,leggings,legging);
+    let lastChest = finalArmor(money,chests,chest);
+
+    if(lastMaxValue < lastHelmet[1])
+    {
+        lastMaxValue = lastHelmet[1];
+        extra = lastHelmet[0];
+    }
+    if(lastMaxValue < lastChest[1])
+    {
+        lastMaxValue = lastChest[1];
+        extra = lastChest[0];
+    }
+    if(lastMaxValue < lastLeg[1])
+    {
+        lastMaxValue = lastLeg[1];
+        extra = lastLeg[0];
+    }
+    
+    total = hNum + lNum + cNum + lastMaxValue;
+    console.log('Helmet: ' + helmet);
+    console.log('Chest: ' + chest);
+    console.log('Legging: ' + legging);
+    console.log('Extra Piece: ' + extra);
+    console.log('Max Value: ' + total);
 }
 
 findArmor(coins,max);
@@ -221,5 +245,9 @@ function finalArmor(crown,typeArm,areaArm)
     }
     crown = crown - itemPrice;
 
-    console.log(itemName,max,crown);
+    arr.push(itemName);
+    arr.push(max);
+    arr.push(crown);
+
+    return arr;
 }
