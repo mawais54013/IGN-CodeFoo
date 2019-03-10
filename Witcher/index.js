@@ -151,15 +151,75 @@ function findArmor(money, highNum)
     let helmet = '';
     let legging = '';
     let chest = '';
+    let extra = '';
 
     let hNum = 0;
+    let hPrice = 0;
     let lNum = 0;
+    let lPrice = 0;
     let cNum = 0;
+    let cPrice = 0;
+    let extraValue = 0;
+    let extraPrice = 0;
 
     let total = 0;
 
     for(let i = 0; i < helmets.length; i++)
     {
-        
+        if(hNum < helmets[i].value && helmets[i].price < money)
+        {
+            hNum = helmets[i].value;
+            hPrice = helmets[i].price;
+            helmet = helmets[i].name;
+        }
     }
+    money = money - hPrice;
+
+    for(let j = 0; j < leggings.length; j++)
+    {
+        if(lNum < leggings[j].value && leggings[j].price < money)
+        {
+            lNum = leggings[j].value;
+            lPrice = leggings[j].price;
+            legging = leggings[j].name;
+        }
+    }
+    money = money - lPrice;
+
+    for(let k = 0; k < chests.length; k++)
+    {
+        if(cNum < chests[k].value && chests[k].price < money)
+        {
+            cNum = chests[k].value;
+            cPrice = chests[k].price;
+            chest = chests[k].name;
+        }
+    }
+    money = money - cPrice;
+
+    let lastType = finalArmor(money,helmets,helmet);
+    console.log(helmet,legging,chest);
+}
+
+findArmor(coins,max);
+
+function finalArmor(crown,typeArm,areaArm)
+{
+    let arr = [];
+    let max = 0;
+    let itemName = '';
+    let itemPrice = 0;
+
+    for(let r = 0 ; r < typeArm.length; r++)
+    {
+        if(max < typeArm[r].value && typeArm[r].price <= crown && typeArm[r].name !== areaArm)
+        {
+            max = typeArm[r].value;
+            itemName = typeArm[r].name;
+            itemPrice = typeArm[r].price;
+        }
+    }
+    crown = crown - itemPrice;
+
+    console.log(itemName,max,crown);
 }
