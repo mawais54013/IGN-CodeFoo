@@ -142,11 +142,13 @@ let chests = [
     },
 ]
 
-let coins = 300;
-let max = 0;
+// let coins = 300;
+let coins = document.getElementById('input1').value;
+console.log(coins);
+// let max = 0;
 let setArmor = [];
 
-function findArmor(money, highNum)
+function findArmor(money)
 {
     let helmet = '';
     let legging = '';
@@ -218,14 +220,24 @@ function findArmor(money, highNum)
     }
     
     total = hNum + lNum + cNum + lastMaxValue;
+    console.log(1 == '1.0')
     console.log('Helmet: ' + helmet);
     console.log('Chest: ' + chest);
     console.log('Legging: ' + legging);
     console.log('Extra Piece: ' + extra);
     console.log('Max Value: ' + total);
+
+    $('#displayArmor').append(`
+        <h1>Summary</h1>
+        <h2 class="uk-card-title">Helmet: `+` ${helmet}</h2>
+        <h2 class="uk-card-title">Chest: `+` ${chest}</h2>
+        <h2 class="uk-card-title">Legging: `+` ${legging}</h2>
+        <h2 class="uk-card-title">Extra item: `+` ${extra}</h2>
+        <h2 class="uk-card-title">Max Value: `+` ${total}</h2>
+    `)
 }
 
-findArmor(coins,max);
+// findArmor(coins);
 
 function finalArmor(crown,typeArm,areaArm)
 {

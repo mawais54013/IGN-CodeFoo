@@ -1,0 +1,53 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Max Armor</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/css/uikit.min.css">
+        <link rel ="stylesheet" href="style.css">
+    </head>
+    <body>
+
+            <div class="uk-child-width-expand@s uk-text-center" uk-grid>
+                    <div>
+                    </div>
+                    <div>
+                        <div class="uk-card uk-card-default uk-card-body" id="head2">
+                            <h1 id="head3">Witcher Armory</h1>
+                        </div>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+                <br>
+                <div class="uk-grid-collapse uk-child-width-expand@s uk-text-center" uk-grid>
+            
+                    <div class="uk-width-1-2">
+                            <div class="uk-card uk-card-default uk-card-body">
+                                <div class="uk-margin">
+                                    <input id="input1" onfocus="this.value=''" class="uk-input uk-form-width-medium" type="text" placeholder="Enter # of Crowns">
+                                    <button class="uk-button uk-button-danger" onclick="findArmor(document.getElementById('input1').value)">Get Best Armor</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-2">
+                            <div class="uk-card uk-card-default uk-card-body uk-background-secondary uk-padding uk-light">
+                                <div class="uk-card uk-card-primary uk-card-body" id="displayArmor">
+                                    <!-- <h3 class="uk-card-title">The Celsius Temperature</h3>
+                                    <p id="color1">Your Fahrenheit Temperature: </p>
+                                    <h5 id="head1"></h5>
+                                    <p id="color1">Celsius Temperature is:</p>
+                                    <p id="returnValue"></p> -->
+                                </div>           
+                            </div>
+                        </div>
+                </div>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit-icons.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>
