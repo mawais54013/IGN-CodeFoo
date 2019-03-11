@@ -144,8 +144,6 @@ let chests = [
 
 // let coins = 300;
 let coins = document.getElementById('input1').value;
-console.log(coins);
-// let max = 0;
 let setArmor = [];
 
 function findArmor(money)
@@ -198,6 +196,7 @@ function findArmor(money)
     money = money - cPrice;
 
     let lastMaxValue = 0;
+    let remainder = 0;
 
     let lastHelmet = finalArmor(money,helmets,helmet);
     let lastLeg = finalArmor(money,leggings,legging);
@@ -207,25 +206,28 @@ function findArmor(money)
     {
         lastMaxValue = lastHelmet[1];
         extra = lastHelmet[0];
+        remainder = lastHelmet[2];
     }
     if(lastMaxValue < lastChest[1])
     {
         lastMaxValue = lastChest[1];
         extra = lastChest[0];
+        remainder = lastChest[2];
     }
     if(lastMaxValue < lastLeg[1])
     {
         lastMaxValue = lastLeg[1];
         extra = lastLeg[0];
+        remainder = lastLeg[2];
     }
     
     total = hNum + lNum + cNum + lastMaxValue;
-    console.log(1 == '1.0')
-    console.log('Helmet: ' + helmet);
-    console.log('Chest: ' + chest);
-    console.log('Legging: ' + legging);
-    console.log('Extra Piece: ' + extra);
-    console.log('Max Value: ' + total);
+
+    // console.log('Helmet: ' + helmet);
+    // console.log('Chest: ' + chest);
+    // console.log('Legging: ' + legging);
+    // console.log('Extra Piece: ' + extra);
+    // console.log('Max Value: ' + total);
 
     $('#displayArmor').append(`
         <h1>Summary</h1>
@@ -234,10 +236,9 @@ function findArmor(money)
         <h2 class="uk-card-title">Legging: `+` ${legging}</h2>
         <h2 class="uk-card-title">Extra item: `+` ${extra}</h2>
         <h2 class="uk-card-title">Max Value: `+` ${total}</h2>
+        <h2 class="uk-card-title">Remaining Crowns: `+` ${remainder}</h2>
     `)
 }
-
-// findArmor(coins);
 
 function finalArmor(crown,typeArm,areaArm)
 {
