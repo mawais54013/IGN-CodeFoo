@@ -8,8 +8,6 @@ $(document).ready(function() {
       success: function(response) {
         console.log(response)
         
-      } //End ajax success
-  
-    }); //End ajax
-    
+      }
+    });  
   });
