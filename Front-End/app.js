@@ -1,5 +1,6 @@
 let queryURL = "https://ign-apis.herokuapp.com/content?startIndex=0&count=6";
 let commentQuery = "https://ign-apis.herokuapp.com/comments?ids=3de45473c5662f25453551a2e1cb4e6e,63a71f01cca67c9bbf5e7b6f091d551d";
+let videoURL = "https://ign-apis.herokuapp.com/content?startIndex=0&count=15";
 
 $(document).ready(function() { 
     $.ajax({
@@ -46,7 +47,7 @@ function getLatest()
                                 <img src="${element.thumbnails[0].url}">
                             </div>
                             <div class="col-sm" id="divRight">
-                                <h5>${time}  ·  <i class="far fa-comment fa-1x"></i></h5>
+                                <h5>${time}  ·  <i class="far fa-comment fa-1x"></i> ${res.count}</h5>
                                 <h3>${title}</h3>
                             </div>
                         </div>
@@ -57,4 +58,21 @@ function getLatest()
             });
         }
     });
+}
+
+function getVideos()
+{
+    $.ajax({
+        type: 'GET',
+        url: videoURL,
+        dataType: 'JSONP',
+        success: function(info) {
+            console.log(info);
+            info.data.forEach(function(element){
+                $('#postArea').append(`
+                    <h1>tester</h1>
+                `)
+            })
+        }
+    })
 }
