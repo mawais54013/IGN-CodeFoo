@@ -42,3 +42,12 @@ button:hover {
 {
     margin-top: 10px;
 }
+
+#divLeft
+{
+    padding-right: 0px;
+}
+#divRight
+{
+    padding-left: 0px;
+}
