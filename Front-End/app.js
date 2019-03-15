@@ -70,12 +70,41 @@ function getVideos()
         success: function(info) {
             $("#postArea").html("");
             console.log(info);
-            
-            // info.data.forEach(function(element){
-            //     $('#postArea').append(`
-            //         <h1>tester</h1>
-            //     `);
-            // })
+            let videoTitle = '';
+            info.data.forEach(function(element){
+                let videoTime = moment(element.metadata.publishDate).format("MM/D/YY");
+                if(element.metadata.title)
+                {
+                    videoTitle = element.metadata.title;
+                }
+                else 
+                {
+                    videoTitle = element.metadata.headline;
+                }
+                if(element.contentType == 'video')
+                {
+                    $.ajax({
+                        type: 'GET',
+                        url: `https://ign-apis.herokuapp.com/comments?ids=${element.contentId}`,
+                        dataType: 'JSONP',
+                        success: function(res) {
+                            console.log(res);
+                            $("#postArea").append(`
+                            <div class="row">
+                                <div class="col-sm" id="divLeft">
+                                    <img src="${element.thumbnails[0].url}">
+                                </div>
+                                <div class="col-sm" id="divRight">
+                                    <h5>${videoTime}  ·  <i class="far fa-comment fa-1x"></i> ${res.count}</h5>
+                                    <h3>${videoTitle}</h3>
+                                </div>
+                            </div>
+                            <br>
+                            `)
+                        }
+                    });
+                }
+            })
         }
     });
 };
