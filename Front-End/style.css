@@ -68,3 +68,14 @@ h5
     background-color: #A40010;
     color: white;
 }
+
+#button3:hover { 
+    background-color: #FF0000;
+  }
+#headLine
+{
+    color: black;
+}
+#headLine:hover {
+    color: rgb(2, 122, 254)
+}

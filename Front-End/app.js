@@ -71,8 +71,8 @@ function getVideos()
         success: function(info) {
             $("#postArea").html("");
             console.log(info);
-            let videoTitle = '';
             info.data.forEach(function(element){
+                let videoTitle = '';
                 let videoTime = GetAge(element.metadata.publishDate);
                 if(element.metadata.title)
                 {
@@ -98,7 +98,7 @@ function getVideos()
                                 </div>
                                 <div class="col-sm" id="divRight">
                                     <h5>${videoTime}  ·  <i class="far fa-comment fa-1x"></i> ${res.count}</h5>
-                                    <h4>${videoTitle}</h4>
+                                    <a href="index.html"><h4 id="headLine">${videoTitle}</h4></a>
                                 </div>
                             </div>
                             <br>
@@ -120,9 +120,8 @@ function getArticles()
         success: function(info) {
             $("#postArea").html("");
             console.log(info);
-            let articleTitle = '';
             info.data.forEach(function(element){
-                // let articleTime = moment(element.metadata.publishDate).format("MM/D/YY");
+                let articleTitle = '';
                 let articleTime = GetAge(element.metadata.publishDate);
                 // console.log(GetAge(element.metadata.publishDate))
                 if(element.metadata.title)
