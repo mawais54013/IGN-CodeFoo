@@ -1,6 +1,7 @@
-let queryURL = "https://ign-apis.herokuapp.com/content?startIndex=0&count=6";
+let queryURL = "https://ign-apis.herokuapp.com/content?startIndex=0&count=10";
 let commentQuery = "https://ign-apis.herokuapp.com/comments?ids=3de45473c5662f25453551a2e1cb4e6e,63a71f01cca67c9bbf5e7b6f091d551d";
 let videoURL = "https://ign-apis.herokuapp.com/content?startIndex=0&count=15";
+let articleURL = "https://ign-apis.herokuapp.com/content?startIndex=0&count=20";
 
 $(document).ready(function() { 
     $.ajax({
@@ -45,11 +46,11 @@ function getLatest()
                         $("#postArea").append(`
                         <div class="row">
                             <div class="col-sm" id="divLeft">
-                                <img src="${element.thumbnails[0].url}">
+                                <img src="${element.thumbnails[0].url}" class="rounded">
                             </div>
                             <div class="col-sm" id="divRight">
                                 <h5>${time}  ·  <i class="far fa-comment fa-1x"></i> ${res.count}</h5>
-                                <h3>${title}</h3>
+                                <h4>${title}</h4>
                             </div>
                         </div>
                         <br>
@@ -92,11 +93,59 @@ function getVideos()
                             $("#postArea").append(`
                             <div class="row">
                                 <div class="col-sm" id="divLeft">
-                                    <img src="${element.thumbnails[0].url}">
+                                    <img src="${element.thumbnails[0].url}" class="rounded">
                                 </div>
                                 <div class="col-sm" id="divRight">
                                     <h5>${videoTime}  ·  <i class="far fa-comment fa-1x"></i> ${res.count}</h5>
-                                    <h3>${videoTitle}</h3>
+                                    <h4>${videoTitle}</h4>
+                                </div>
+                            </div>
+                            <br>
+                            `)
+                        }
+                    });
+                }
+            })
+        }
+    });
+};
+
+function getArticles()
+{
+    $.ajax({
+        type: 'GET',
+        url: articleURL,
+        dataType: 'JSONP',
+        success: function(info) {
+            $("#postArea").html("");
+            console.log(info);
+            let articleTitle = '';
+            info.data.forEach(function(element){
+                let articleTime = moment(element.metadata.publishDate).format("MM/D/YY");
+                if(element.metadata.title)
+                {
+                    articleTitle = element.metadata.title;
+                }
+                else 
+                {
+                    articleTitle = element.metadata.headline;
+                }
+                if(element.contentType == 'article')
+                {
+                    $.ajax({
+                        type: 'GET',
+                        url: `https://ign-apis.herokuapp.com/comments?ids=${element.contentId}`,
+                        dataType: 'JSONP',
+                        success: function(res) {
+                            console.log(res);
+                            $("#postArea").append(`
+                            <div class="row">
+                                <div class="col-sm" id="divLeft">
+                                    <img src="${element.thumbnails[0].url}" class="rounded">
+                                </div>
+                                <div class="col-sm" id="divRight">
+                                    <h5>${articleTime}  ·  <i class="far fa-comment fa-1x"></i> ${res.count}</h5>
+                                    <h4>${articleTitle}</h4>
                                 </div>
                             </div>
                             <br>

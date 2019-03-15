@@ -28,7 +28,7 @@ button
 }
 
 button:hover {
-    background-color: #8b0000;
+    background-color: rgb(232, 231, 234);
     color: white;
   }
 
@@ -50,4 +50,9 @@ button:hover {
 #divRight
 {
     padding-left: 0px;
+}
+
+h5
+{
+    color: #A40010;
 }
