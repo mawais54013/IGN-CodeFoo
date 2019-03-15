@@ -56,3 +56,15 @@ h5
 {
     color: #A40010;
 }
+#divLeft {
+    display:inline-block;
+    position:relative;
+}
+#button3 {
+    position:absolute;
+    bottom:15px;
+    left:20px;
+    width: 100px;
+    background-color: #A40010;
+    color: white;
+}

@@ -26,7 +26,7 @@ function getLatest()
             response.data.forEach(function(element){
                 console.log(element)
                 // console.log(moment(element.metadata.publishDate).format("MM/D/YY"))
-                let time = moment(element.metadata.publishDate).format("MM/D/YY");
+                let time = GetAge(element.metadata.publishDate);
                 comArray.push(element.contentId);
                 let title = "";
                 if(element.metadata.title)
@@ -73,7 +73,7 @@ function getVideos()
             console.log(info);
             let videoTitle = '';
             info.data.forEach(function(element){
-                let videoTime = moment(element.metadata.publishDate).format("MM/D/YY");
+                let videoTime = GetAge(element.metadata.publishDate);
                 if(element.metadata.title)
                 {
                     videoTitle = element.metadata.title;
@@ -94,6 +94,7 @@ function getVideos()
                             <div class="row">
                                 <div class="col-sm" id="divLeft">
                                     <img src="${element.thumbnails[0].url}" class="rounded">
+                                    <button id="button3">test</button>
                                 </div>
                                 <div class="col-sm" id="divRight">
                                     <h5>${videoTime}  ·  <i class="far fa-comment fa-1x"></i> ${res.count}</h5>
@@ -121,7 +122,9 @@ function getArticles()
             console.log(info);
             let articleTitle = '';
             info.data.forEach(function(element){
-                let articleTime = moment(element.metadata.publishDate).format("MM/D/YY");
+                // let articleTime = moment(element.metadata.publishDate).format("MM/D/YY");
+                let articleTime = GetAge(element.metadata.publishDate);
+                // console.log(GetAge(element.metadata.publishDate))
                 if(element.metadata.title)
                 {
                     articleTitle = element.metadata.title;
@@ -156,4 +159,21 @@ function getArticles()
             })
         }
     });
+};
+
+function GetAge(publishDate){
+    let publishAge = Date.now() - Date.parse(publishDate);
+    let seconds = (publishAge / 1000).toFixed(); 
+    let minutes = (publishAge / (1000 * 60)).toFixed(); 
+    let hours = (publishAge / (1000 * 60 * 60)).toFixed(); 
+    let days  = (publishAge / (1000 * 60 * 60 * 24)).toFixed(); 
+    if (seconds < 60) {
+        return seconds+"s"
+    } else if (minutes < 60) {
+        return minutes+"m"
+    } else if (hours < 24) {
+        return hours+"h"
+    } else {
+        return days+"d"
+    }
 };
