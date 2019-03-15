@@ -21,6 +21,7 @@ function getLatest()
         url: queryURL,
         dataType: 'JSONP',
         success: function(response) {
+            $("#postArea").html("");
             response.data.forEach(function(element){
                 console.log(element)
                 // console.log(moment(element.metadata.publishDate).format("MM/D/YY"))
@@ -67,12 +68,14 @@ function getVideos()
         url: videoURL,
         dataType: 'JSONP',
         success: function(info) {
+            $("#postArea").html("");
             console.log(info);
-            info.data.forEach(function(element){
-                $('#postArea').append(`
-                    <h1>tester</h1>
-                `)
-            })
+            
+            // info.data.forEach(function(element){
+            //     $('#postArea').append(`
+            //         <h1>tester</h1>
+            //     `);
+            // })
         }
-    })
-}
+    });
+};
