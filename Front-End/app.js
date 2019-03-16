@@ -95,7 +95,7 @@ function getVideos()
                             <div class="row">
                                 <div class="col-sm" id="divLeft">
                                     <img src="${element.thumbnails[0].url}" class="rounded" id="notRound">
-                                    <button id="button3"><img src="play-button.png" id="playImg"> ${movieTime}</button>
+                                    <a href=""><button id="button3"><img src="play-button.png" id="playImg"> ${movieTime}</button></a>
                                 </div>
                                 <div class="col-sm" id="divRight">
                                     <h5>${videoTime}  ·  <i class="far fa-comment fa-1x"></i> &nbsp; ${res.count}</h5>
