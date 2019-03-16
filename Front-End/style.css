@@ -77,6 +77,10 @@ h5
 #button3:hover { 
     background-color: #FF0000;
   }
+#mainButton:focus {     
+    background-color:#A40010;
+    color: white;  
+}
 #headLine
 {
     color: black;
