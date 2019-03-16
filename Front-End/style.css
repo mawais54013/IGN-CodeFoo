@@ -42,6 +42,10 @@ button:hover {
 {
     margin-top: 10px;
 }
+#button2
+{
+    margin-top: 10px;
+}
 
 #divLeft
 {
@@ -64,9 +68,10 @@ h5
     position:absolute;
     bottom:15px;
     left:20px;
-    width: 100px;
+    width: 130px;
     background-color: #A40010;
     color: white;
+    height: 50px;
 }
 
 #button3:hover { 
@@ -78,4 +83,34 @@ h5
 }
 #headLine:hover {
     color: rgb(2, 122, 254)
+}
+#playImg
+{
+    margin-bottom: 5px;
+}
+#icon2
+{
+    margin-right: 20px;
+    margin-left: 15px;
+}
+.rounded:hover
+{
+    background-color:white;
+    opacity:0.6;
+}
+#notRound:hover
+{
+    background-color: none;
+    opacity: 1;
+}
+
+@media only screen and (max-width: 572px) {
+    #button2
+    {
+        margin-bottom: 30px;
+    }
+    #divRight
+    {
+        padding-left: 20px;
+    }
 }

@@ -46,11 +46,11 @@ function getLatest()
                         $("#postArea").append(`
                         <div class="row">
                             <div class="col-sm" id="divLeft">
-                                <img src="${element.thumbnails[0].url}" class="rounded">
+                                <a href=""><img src="${element.thumbnails[0].url}" class="rounded"></a>
                             </div>
                             <div class="col-sm" id="divRight">
                                 <h5>${time}  ·  <i class="far fa-comment fa-1x"></i> ${res.count}</h5>
-                                <h4>${title}</h4>
+                                <a href=""><h4 id="headLine">${title}</h4></a>
                             </div>
                         </div>
                         <br>
@@ -74,6 +74,7 @@ function getVideos()
             info.data.forEach(function(element){
                 let videoTitle = '';
                 let videoTime = GetAge(element.metadata.publishDate);
+                let movieTime = time_convert(element.metadata.duration);
                 if(element.metadata.title)
                 {
                     videoTitle = element.metadata.title;
@@ -93,11 +94,11 @@ function getVideos()
                             $("#postArea").append(`
                             <div class="row">
                                 <div class="col-sm" id="divLeft">
-                                    <img src="${element.thumbnails[0].url}" class="rounded">
-                                    <button id="button3">test</button>
+                                    <img src="${element.thumbnails[0].url}" class="rounded" id="notRound">
+                                    <button id="button3"><img src="play-button.png" id="playImg"> ${movieTime}</button>
                                 </div>
                                 <div class="col-sm" id="divRight">
-                                    <h5>${videoTime}  ·  <i class="far fa-comment fa-1x"></i> ${res.count}</h5>
+                                    <h5>${videoTime}  ·  <i class="far fa-comment fa-1x"></i> &nbsp; ${res.count}</h5>
                                     <a href="index.html"><h4 id="headLine">${videoTitle}</h4></a>
                                 </div>
                             </div>
@@ -143,11 +144,11 @@ function getArticles()
                             $("#postArea").append(`
                             <div class="row">
                                 <div class="col-sm" id="divLeft">
-                                    <img src="${element.thumbnails[0].url}" class="rounded">
+                                    <a href=""><img src="${element.thumbnails[0].url}" class="rounded"></a>
                                 </div>
                                 <div class="col-sm" id="divRight">
                                     <h5>${articleTime}  ·  <i class="far fa-comment fa-1x"></i> ${res.count}</h5>
-                                    <h4>${articleTitle}</h4>
+                                    <a href=""><h4 id="headLine">${articleTitle}</h4></a>
                                 </div>
                             </div>
                             <br>
