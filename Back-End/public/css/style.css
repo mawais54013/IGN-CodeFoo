@@ -8,3 +8,9 @@ header
 {
     text-align: center;
 }
+
+#headTag
+{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 50px;
+}
