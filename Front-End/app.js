@@ -3,29 +3,17 @@ let commentQuery = "https://ign-apis.herokuapp.com/comments?ids=3de45473c5662f25
 let videoURL = "https://ign-apis.herokuapp.com/content?startIndex=0&count=15";
 let articleURL = "https://ign-apis.herokuapp.com/content?startIndex=0&count=20";
 
-$(document).ready(function() { 
-    $.ajax({
-      type: 'GET',
-      url: commentQuery,
-      dataType: 'JSONP',
-      success: function(response) {
-        console.log(response)
-      }
-    });  
-  });
-
 function getLatest()
 {
+    $("#postArea").fadeOut().html("");
     let comArray = [];
     $.ajax({
         type: 'GET',
         url: queryURL,
         dataType: 'JSONP',
         success: function(response) {
-            $("#postArea").html("");
             response.data.forEach(function(element){
                 console.log(element)
-                // console.log(moment(element.metadata.publishDate).format("MM/D/YY"))
                 let time = GetAge(element.metadata.publishDate);
                 comArray.push(element.contentId);
                 let title = "";
@@ -43,7 +31,8 @@ function getLatest()
                     dataType: 'JSONP',
                     success: function(res) {
                         console.log(res);
-                        $("#postArea").append(`
+                       
+                        $("#postArea").fadeIn().append(`
                         <div class="row">
                             <div class="col-sm" id="divLeft">
                                 <a href=""><img src="${element.thumbnails[0].url}" class="rounded"></a>
@@ -64,12 +53,12 @@ function getLatest()
 
 function getVideos()
 {
+    $("#postArea").fadeOut().html("");
     $.ajax({
         type: 'GET',
         url: videoURL,
         dataType: 'JSONP',
         success: function(info) {
-            $("#postArea").html("");
             console.log(info);
             info.data.forEach(function(element){
                 let videoTitle = '';
@@ -91,7 +80,8 @@ function getVideos()
                         dataType: 'JSONP',
                         success: function(res) {
                             console.log(res);
-                            $("#postArea").append(`
+                            
+                            $("#postArea").fadeIn().append(`
                             <div class="row">
                                 <div class="col-sm" id="divLeft">
                                     <img src="${element.thumbnails[0].url}" class="rounded" id="notRound">
@@ -114,17 +104,16 @@ function getVideos()
 
 function getArticles()
 {
+    $("#postArea").fadeOut().html("");
     $.ajax({
         type: 'GET',
         url: articleURL,
         dataType: 'JSONP',
         success: function(info) {
-            $("#postArea").html("");
             console.log(info);
             info.data.forEach(function(element){
                 let articleTitle = '';
                 let articleTime = GetAge(element.metadata.publishDate);
-                // console.log(GetAge(element.metadata.publishDate))
                 if(element.metadata.title)
                 {
                     articleTitle = element.metadata.title;
@@ -141,7 +130,7 @@ function getArticles()
                         dataType: 'JSONP',
                         success: function(res) {
                             console.log(res);
-                            $("#postArea").append(`
+                            $("#postArea").fadeIn().append(`
                             <div class="row">
                                 <div class="col-sm" id="divLeft">
                                     <a href=""><img src="${element.thumbnails[0].url}" class="rounded"></a>
