@@ -223,12 +223,6 @@ function findArmor(money)
     
     total = hNum + lNum + cNum + lastMaxValue;
 
-    // console.log('Helmet: ' + helmet);
-    // console.log('Chest: ' + chest);
-    // console.log('Legging: ' + legging);
-    // console.log('Extra Piece: ' + extra);
-    // console.log('Max Value: ' + total);
-
     $('#displayArmor').append(`
         <h1>Summary</h1>
         <h2 class="uk-card-title">Helmet: `+` ${helmet}</h2>
