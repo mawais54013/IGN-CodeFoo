@@ -2,15 +2,18 @@ let queryURL = "https://ign-apis.herokuapp.com/content?startIndex=0&count=10";
 let commentQuery = "https://ign-apis.herokuapp.com/comments?ids=3de45473c5662f25453551a2e1cb4e6e,63a71f01cca67c9bbf5e7b6f091d551d";
 let videoURL = "https://ign-apis.herokuapp.com/content?startIndex=0&count=15";
 let articleURL = "https://ign-apis.herokuapp.com/content?startIndex=0&count=20";
-
+// get latest articles and videos
 function getLatest()
 {
+    // fade feature
     $("#postArea").fadeOut().html("");
     let comArray = [];
+    // ajax request and return data in json format
     $.ajax({
         type: 'GET',
         url: queryURL,
         dataType: 'JSONP',
+        // success then set up the time since published and check if title or headline is available
         success: function(response) {
             response.data.forEach(function(element){
                 console.log(element)
@@ -25,6 +28,7 @@ function getLatest()
                 {
                     title = element.metadata.headline;
                 }
+                // get request for the number of comment based on the content and display everything on the area
                 $.ajax({
                     type: 'GET',
                     url: `https://ign-apis.herokuapp.com/comments?ids=${element.contentId}`,
@@ -50,7 +54,7 @@ function getLatest()
         }
     });
 }
-
+// similar as the getLatest function except for videos
 function getVideos()
 {
     $("#postArea").fadeOut().html("");
@@ -149,7 +153,7 @@ function getArticles()
         }
     });
 };
-
+// this gets the time of the published item since now
 function GetAge(publishDate){
     let publishAge = Date.now() - Date.parse(publishDate);
     let seconds = (publishAge / 1000).toFixed(); 
@@ -166,7 +170,7 @@ function GetAge(publishDate){
         return days+"d"
     }
 };
-
+// time of each videos
 function time_convert(num)
  { 
   var hours = Math.floor(num / 60);  

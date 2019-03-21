@@ -107,7 +107,7 @@ h5
     background-color: none;
     opacity: 1;
 }
-
+/* help make responsive */
 @media only screen and (max-width: 572px) {
     #button2
     {

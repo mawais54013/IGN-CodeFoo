@@ -1,8 +1,10 @@
+-- copy and paste the below schema to database
 DROP DATABASE IF EXISTS ignDB;
 CREATE database ignDB;
 
 USE ignDB;
-
+-- data stored as int and text 
+-- also data is assigned number and all information from the csv file
 CREATE TABLE news(
   position INT NOT NULL,
   content_id VARCHAR(1000) NULL,

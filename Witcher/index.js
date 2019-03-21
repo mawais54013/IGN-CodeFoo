@@ -1,3 +1,4 @@
+// helmets array
 let helmets = [
     {
         name: 'Serpentine Cruz Headpiece ',
@@ -35,7 +36,7 @@ let helmets = [
         value: 12,
     }
 ];
-
+// legging array
 let leggings = [
     {
         name: 'Famed Pon Leggings',
@@ -93,7 +94,7 @@ let leggings = [
         value: 13,
     },
 ];
-
+// chest array
 let chests = [
     {
         name: 'Armor de Jandro',
@@ -141,11 +142,10 @@ let chests = [
         value: 17,
     },
 ]
-
 // let coins = 300;
 let coins = document.getElementById('input1').value;
 let setArmor = [];
-
+// once user clicks button this function is performed
 function findArmor(money)
 {
     let helmet = '';
@@ -161,7 +161,7 @@ function findArmor(money)
     let cPrice = 0;
 
     let total = 0;
-
+// go through the helmet array to find one with max value and fits within money limit
     for(let i = 0; i < helmets.length; i++)
     {
         if(hNum < helmets[i].value && helmets[i].price < money)
@@ -172,7 +172,7 @@ function findArmor(money)
         }
     }
     money = money - hPrice;
-
+// after money is subtracted from helmet, do the same with leggings array
     for(let j = 0; j < leggings.length; j++)
     {
         if(lNum < leggings[j].value && leggings[j].price < money)
@@ -183,7 +183,7 @@ function findArmor(money)
         }
     }
     money = money - lPrice;
-
+// same code to find max of chest
     for(let k = 0; k < chests.length; k++)
     {
         if(cNum < chests[k].value && chests[k].price < money)
@@ -194,7 +194,7 @@ function findArmor(money)
         }
     }
     money = money - cPrice;
-
+// to find the extra item we perform finalArmor function and check with each other to find max value and if it is within money limit
     let lastMaxValue = 0;
     let remainder = 0;
 
@@ -222,7 +222,7 @@ function findArmor(money)
     }
     
     total = hNum + lNum + cNum + lastMaxValue;
-
+// after we have all the armor, go ahead and append them to the html in the following format
     $('#displayArmor').append(`
         <h1>Summary</h1>
         <h2 class="uk-card-title">Helmet: `+` ${helmet}</h2>
@@ -233,14 +233,14 @@ function findArmor(money)
         <h2 class="uk-card-title">Remaining Crowns: `+` ${remainder}</h2>
     `)
 }
-
+// function to get extra piece with the money available
 function finalArmor(crown,typeArm,areaArm)
 {
     let arr = [];
     let max = 0;
     let itemName = '';
     let itemPrice = 0;
-
+// as long as value is high, price is acceptable, and it is not the same item return it 
     for(let r = 0 ; r < typeArm.length; r++)
     {
         if(max < typeArm[r].value && typeArm[r].price <= crown && typeArm[r].name !== areaArm)

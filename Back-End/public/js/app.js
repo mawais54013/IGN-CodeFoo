@@ -1,7 +1,7 @@
 $.get("/api/news", function (res) {
     console.log(res);
 });
-
+// get articles from the route and display on area
 function getArticles()
 {
     $("#newsArea").html("");
@@ -29,7 +29,7 @@ function getArticles()
         }
     });
 }
-
+// get videos from the route and display on area
 function getVideos()
 {
     $("#newsArea").html("");
