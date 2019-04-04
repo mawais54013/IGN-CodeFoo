@@ -141,6 +141,34 @@ let chests = [
         price: 50,
         value: 17,
     },
+];
+// boots array
+let boots = [
+    {
+        name: 'Diamond Boots',
+        price: 64,
+        value: 18, 
+    },
+    {
+        name: 'Steel Boots',
+        price: 52,
+        value: 14, 
+    },
+    {
+        name: 'Tates Spiked Cleats',
+        price: 52,
+        value: 20, 
+    },
+    {
+        name: 'Leather Lunde Shoes',
+        price: 35,
+        value: 7, 
+    },
+    {
+        name: 'SCloth Shoes',
+        price: 33,
+        value: 5, 
+    },
 ]
 // let coins = 300;
 let coins = document.getElementById('input1').value;
@@ -151,6 +179,7 @@ function findArmor(money)
     let helmet = '';
     let legging = '';
     let chest = '';
+    let boot = '';
     let extra = '';
 
     let hNum = 0;
@@ -159,6 +188,8 @@ function findArmor(money)
     let lPrice = 0;
     let cNum = 0;
     let cPrice = 0;
+    let bNum = 0;
+    let bPrice = 0;
 
     let total = 0;
 // go through the helmet array to find one with max value and fits within money limit
@@ -194,6 +225,30 @@ function findArmor(money)
         }
     }
     money = money - cPrice;
+// same code to find max of boots
+
+for(let l = 0; l < boots.length; l++)
+{
+    if(bNum < boots[l].value && boots[l].price < money)
+    {
+        bNum = boots[l].value;
+        bPrice = boots[l].price;
+        boot = boots[l].name;
+    }
+}
+// if money is less than the lowest price to get one extra item then perform this function
+    if(money - bPrice < 33)
+    {
+        let finalSet = getLastItems(money,boots,boot);
+        bNum = finalSet[2];
+        boot = finalSet[0];
+        money = finalSet[3];
+    }
+    // else just subtract money
+    else 
+    {
+        money = money - bPrice; 
+    }
 // to find the extra item we perform finalArmor function and check with each other to find max value and if it is within money limit
     let lastMaxValue = 0;
     let remainder = 0;
@@ -201,6 +256,7 @@ function findArmor(money)
     let lastHelmet = finalArmor(money,helmets,helmet);
     let lastLeg = finalArmor(money,leggings,legging);
     let lastChest = finalArmor(money,chests,chest);
+    let lastBoot = finalArmor(money,boots,boot);
 
     if(lastMaxValue < lastHelmet[1])
     {
@@ -220,18 +276,26 @@ function findArmor(money)
         extra = lastLeg[0];
         remainder = lastLeg[2];
     }
+    if(lastMaxValue < lastBoot[1])
+    {
+        lastMaxValue = lastBoot[1];
+        extra = lastBoot[0];
+        remainder = lastBoot[2];
+    }
     
-    total = hNum + lNum + cNum + lastMaxValue;
+    total = hNum + lNum + cNum + bNum + lastMaxValue;
 // after we have all the armor, go ahead and append them to the html in the following format
     $('#displayArmor').append(`
         <h1>Summary</h1>
         <h2 class="uk-card-title">Helmet: `+` ${helmet}</h2>
         <h2 class="uk-card-title">Chest: `+` ${chest}</h2>
         <h2 class="uk-card-title">Legging: `+` ${legging}</h2>
+        <h2 class="uk-card-title">Boots: `+` ${boot}</h2>
         <h2 class="uk-card-title">Extra item: `+` ${extra}</h2>
         <h2 class="uk-card-title">Max Value: `+` ${total}</h2>
         <h2 class="uk-card-title">Remaining Crowns: `+` ${remainder}</h2>
     `)
+    
 }
 // function to get extra piece with the money available
 function finalArmor(crown,typeArm,areaArm)
@@ -257,4 +321,30 @@ function finalArmor(crown,typeArm,areaArm)
     arr.push(crown);
 
     return arr;
+}
+// function to get max out of boots and return the min crowns to get final extra item
+function getLastItems(cash, b1, b2)
+{
+    let arr1 = [];
+    let name1 = '';
+    let price1 = 0;
+    let maxVal1 = 0;
+    let finalPrice = 0;
+
+    for(let t = 0; t < b1.length; t++)
+    {
+        if(cash - b1[t].price > 33 && b1[t].value > maxVal1) 
+        {
+            name1 = b1[t].name;
+            price1 = b1[t].price;
+            maxVal1 = b1[t].value;
+        }
+    }
+    finalPrice = cash - price1;
+    arr1.push(name1);
+    arr1.push(price1);
+    arr1.push(maxVal1);
+    arr1.push(finalPrice);
+
+    return arr1;
 }
